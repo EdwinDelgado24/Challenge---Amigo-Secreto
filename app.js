@@ -41,7 +41,7 @@ function mostrarLista() {
 function sortearAmigo() {
     // Verificar que haya al menos un nombre en la lista
     if (amigos.length === 0) {
-        alert("Debe ingresar al menos un nombre para realizar el sorteo.");
+        alert("¡Ya no quedan amigos para sortear!");
         return;
     }
 
@@ -49,6 +49,11 @@ function sortearAmigo() {
     let indiceAleatorio = Math.floor(Math.random() * amigos.length);
     let amigoSeleccionado = amigos[indiceAleatorio];
 
-    // Mostrar el resultado en la pantalla
-    document.getElementById("resultado").textContent = ` El amigo secreto es: ${amigoSeleccionado} `;
-}
+   // Mostrar el resultado en la pantalla
+    document.getElementById("resultado").innerHTML = `🎊 El amigo secreto es: <strong>${amigoSeleccionado}</strong> 🎊`;
+
+    // Eliminar el amigo sorteado del array para evitar repeticiones
+    amigos.splice(indiceAleatorio, 1);
+
+    // Actualizar la lista de amigos en pantalla
+    mostrarLista();
