@@ -5,6 +5,7 @@ let amigos = [];
 function agregarAmigo() {
     // Obtener el valor ingresado por el usuario
     let nombreInput = document.getElementById("amigo").value.trim();
+    let listaAmigos = document.getElementById("listaAmigos");
 
     // Validar que el campo no esté vacío
     if (nombreInput === "") {
@@ -26,8 +27,12 @@ function agregarAmigo() {
     document.getElementById("amigo").value = "";
 
    // Mostrar la lista de amigos y actualizarla
-    document.getElementById("listaAmigos").style.display = "block"; // Asegurar que la lista se muestre
     mostrarLista();
+
+    // Asegurar que la lista se muestre cuando haya al menos un amigo
+    if (amigos.length > 0) {
+        listaAmigos.style.display = "block";
+    }
 }
 
 // Paso 3: Función para mostrar la lista de nombres ingresados
