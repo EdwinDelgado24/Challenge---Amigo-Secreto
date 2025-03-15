@@ -33,5 +33,19 @@ function mostrarLista() {
         listaAmigos.appendChild(item);
     });
 }
+// Paso 4: Función para realizar el sorteo
+function sortearAmigo() {
+    // Verificar que haya al menos un nombre en la lista
+    if (amigos.length === 0) {
+        alert("Debe ingresar al menos un nombre para realizar el sorteo.");
+        return;
+    }
 
+    // Seleccionar un nombre aleatorio
+    let indiceAleatorio = Math.floor(Math.random() * amigos.length);
+    let amigoSeleccionado = amigos[indiceAleatorio];
+
+    // Mostrar el resultado en la pantalla
+    document.getElementById("resultadoSorteo").textContent = ` El amigo secreto es: ${amigoSeleccionado} `;
+}
 
