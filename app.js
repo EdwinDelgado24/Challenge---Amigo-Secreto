@@ -32,7 +32,7 @@ function mostrarLista() {
     // Recorrer el array y agregar cada nombre a la lista en pantalla
     amigos.forEach((amigo, index) => {
         let item = document.createElement("li");
-        item.textContent = amigo;
+        item.textContent = `${index + 1}. ${amigo}`;
         listaAmigos.appendChild(item);
     });
 }
@@ -42,6 +42,7 @@ function sortearAmigo() {
     // Verificar que haya al menos un nombre en la lista
     if (amigos.length === 0) {
         alert("¡Ya no quedan amigos para sortear!");
+        document.getElementById("resultado").innerHTML = "No hay más amigos para sortear.";
         return;
     }
 
@@ -55,5 +56,12 @@ function sortearAmigo() {
     // Eliminar el amigo sorteado del array para evitar repeticiones
     amigos.splice(indiceAleatorio, 1);
 
-    // Actualizar la lista de amigos en pantalla
+  // Actualizar la lista de amigos en pantalla
     mostrarLista();
+
+    // Si después de este sorteo ya no quedan amigos, mostrar mensaje
+    if (amigos.length === 0) {
+        alert("🎉 ¡Se han sorteado todos los amigos secretos! 🎉");
+        document.getElementById("resultado").innerHTML = "Todos los amigos han sido sorteados.";
+    }
+}
