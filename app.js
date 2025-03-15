@@ -49,6 +49,9 @@ function mostrarLista() {
         listaAmigos.appendChild(item);
     });
 }
+// Si la lista tiene elementos, asegurarse de que se muestre
+    listaAmigos.style.display = amigos.length > 0 ? "block" : "none";
+}
 
 // Paso 4: Función para realizar el sorteo
 function sortearAmigo() {
@@ -58,6 +61,9 @@ function sortearAmigo() {
         document.getElementById("resultado").innerHTML = "No hay más amigos para sortear.";
         return;
     }
+
+    // Ocultar la lista de amigos cuando comience el sorteo
+    listaAmigos.style.display = "none";
 
     // Seleccionar un nombre aleatorio
     let indiceAleatorio = Math.floor(Math.random() * amigos.length);
