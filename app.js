@@ -11,7 +11,12 @@ function agregarAmigo() {
         alert("Por favor, ingrese un nombre válido.");
         return;
     }
-
+    // Verificar si el nombre ya existe en la lista
+    if (amigos.includes(nombreInput.toLowerCase())) {
+        alert(`El nombre "${nombreInput}" ya ha sido agregado. No puedes ingresar nombres duplicados.`);
+        return;
+    }
+    
     // Agregar el nombre al array
     amigos.push(nombreInput);
 
