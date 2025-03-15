@@ -49,8 +49,12 @@ function mostrarLista() {
         listaAmigos.appendChild(item);
     });
 }
-// Si la lista tiene elementos, asegurarse de que se muestre
-    listaAmigos.style.display = amigos.length > 0 ? "block" : "none";
+// Mostrar la lista mientras se están agregando nombres
+    listaAmigos.style.display = "block";
+}
+// Función para ocultar la lista antes del sorteo
+function ocultarLista() {
+    document.getElementById("listaAmigos").style.display = "none";
 }
 
 // Paso 4: Función para realizar el sorteo
