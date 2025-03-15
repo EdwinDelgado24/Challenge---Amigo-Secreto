@@ -11,8 +11,10 @@ function agregarAmigo() {
         alert("Por favor, ingrese un nombre válido.");
         return;
     }
-    // Verificar si el nombre ya existe en la lista
-    if (amigos.includes(nombreInput.toLowerCase())) {
+    // Verificar si el nombre ya existe en la lista (sin distinguir mayúsculas y minúsculas)
+    let nombreExiste = amigos.some(amigo => amigo.toLowerCase() === nombreInput.toLowerCase());
+
+    if (nombreExiste) {
         alert(`El nombre "${nombreInput}" ya ha sido agregado. No puedes ingresar nombres duplicados.`);
         return;
     }
