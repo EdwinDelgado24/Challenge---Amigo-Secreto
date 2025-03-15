@@ -4,7 +4,7 @@ let amigos = [];
 // Paso 2: Función para agregar nombres a la lista
 function agregarAmigo() {
     // Obtener el valor ingresado por el usuario
-    let nombreInput = document.getElementById("nombreAmigo").value.trim();
+    let nombreInput = document.getElementById("amigo").value.trim();
 
     // Validar que el campo no esté vacío
     if (nombreInput === "") {
@@ -16,7 +16,7 @@ function agregarAmigo() {
     amigos.push(nombreInput);
 
     // Limpiar el campo de entrada
-    document.getElementById("nombreAmigo").value = "";
+    document.getElementById("amigo").value = "";
 
     // Actualizar la lista en pantalla
     mostrarLista();
@@ -50,5 +50,5 @@ function sortearAmigo() {
     let amigoSeleccionado = amigos[indiceAleatorio];
 
     // Mostrar el resultado en la pantalla
-    document.getElementById("resultadoSorteo").textContent = ` El amigo secreto es: ${amigoSeleccionado} `;
+    document.getElementById("resultado").textContent = ` El amigo secreto es: ${amigoSeleccionado} `;
 }
