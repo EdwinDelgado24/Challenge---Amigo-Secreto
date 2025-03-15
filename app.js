@@ -25,7 +25,8 @@ function agregarAmigo() {
     // Limpiar el campo de entrada
     document.getElementById("amigo").value = "";
 
-    // Actualizar la lista en pantalla
+   // Mostrar la lista de amigos y actualizarla
+    document.getElementById("listaAmigos").style.display = "block"; // Asegurar que la lista se muestre
     mostrarLista();
 }
 
