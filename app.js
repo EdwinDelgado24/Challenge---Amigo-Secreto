@@ -18,7 +18,7 @@ function agregarAmigo() {
     }
     
     // Agregar el nombre al array
-    amigos.push(nombreInput);
+    amigos.push(nombreInput.toLowerCase());
 
     // Limpiar el campo de entrada
     document.getElementById("amigo").value = "";
