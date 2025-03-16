@@ -61,7 +61,7 @@ function mostrarResultado(amigo) {
     let resultado = document.getElementById("resultado");
     resultado.innerHTML = `<p>🎉 ${amigo} es el amigo secreto! 🎁</p>`;
 
-    // Ocultar la lista de amigos
+    // Ocultar la lista de amigos sorteados
     document.getElementById("listaAmigos").style.display = "none";
 }
 
@@ -70,6 +70,7 @@ function reiniciarSorteo() {
     amigosSorteados = [];
     document.getElementById("resultado").innerHTML = "";
     document.getElementById("listaAmigos").style.display = "block"; // Volver a mostrar la lista
+    actualizarListaAmigos();
 }
 
 // Event Listeners para permitir agregar amigos con la tecla "Enter"
