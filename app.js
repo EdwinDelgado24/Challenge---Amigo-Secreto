@@ -48,7 +48,7 @@ function sortearAmigo() {
         return;
     }
 
-    // Ocultar la lista de amigos para evitar que vean los que quedan
+    // Ocultar la lista de amigos para que no se vean los que quedan
     document.getElementById("listaAmigos").style.display = "none";
 
     let amigoSorteado;
@@ -67,9 +67,10 @@ function sortearAmigo() {
     mostrarResultado(amigoSorteado);
 }
 
-// Función para mostrar el resultado del sorteo
+// Función para mostrar el último amigo sorteado y no un historial
 function mostrarResultado(amigo) {
     const resultado = document.getElementById("resultado");
+    resultado.innerHTML = ""; // Se limpia el resultado anterior
     const li = document.createElement("li");
     li.textContent = `🎉 ${amigo} es el amigo secreto 🎉`;
     resultado.appendChild(li);
