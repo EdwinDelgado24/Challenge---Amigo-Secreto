@@ -31,6 +31,9 @@ function actualizarListaAmigos() {
         li.textContent = amigo;
         listaAmigos.appendChild(li);
     });
+
+    // Mostrar la lista si se oculta después del sorteo
+    listaAmigos.style.display = "block";
 }
 
 // Función para sortear un amigo secreto
@@ -45,14 +48,19 @@ function sortearAmigo() {
         return;
     }
 
-    // Ocultar la lista de amigos para que no se vean los nombres pendientes
+    // Ocultar la lista de amigos para evitar que vean los que quedan
     document.getElementById("listaAmigos").style.display = "none";
 
     let amigoSorteado;
-    do {
-        let indice = Math.floor(Math.random() * amigos.length);
-        amigoSorteado = amigos[indice];
-    } while (amigosSorteados.includes(amigoSorteado));
+    let disponible = amigos.filter(amigo => !amigosSorteados.includes(amigo));
+
+    if (disponible.length === 0) {
+        alert("Todos los amigos han sido sorteados.");
+        return;
+    }
+
+    let indice = Math.floor(Math.random() * disponible.length);
+    amigoSorteado = disponible[indice];
 
     amigosSorteados.push(amigoSorteado); // Agregar el amigo sorteado a la lista de sorteados
 
@@ -76,7 +84,7 @@ function reiniciarSorteo() {
     document.getElementById("listaAmigos").style.display = "block"; // Mostrar la lista nuevamente
 }
 
-// Agregar event listeners para teclas de acceso rápido
+// Event listener para presionar Enter en el input
 document.getElementById("amigo").addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         agregarAmigo();
