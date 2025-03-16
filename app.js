@@ -1,11 +1,10 @@
-// Lista de amigos y lista de amigos restantes por sortear
-let amigos = [];
-let amigosRestantes = [];
+let amigos = []; // Lista de amigos ingresados
+let amigosSorteados = []; // Lista de amigos ya sorteados
 
 // Función para agregar un amigo a la lista
 function agregarAmigo() {
-    let inputAmigo = document.getElementById("amigo");
-    let nombre = inputAmigo.value.trim();
+    const inputAmigo = document.getElementById("amigo");
+    const nombre = inputAmigo.value.trim(); // Obtiene el nombre sin espacios adicionales
 
     if (nombre === "") {
         alert("Por favor, ingresa un nombre válido.");
@@ -13,74 +12,71 @@ function agregarAmigo() {
     }
 
     if (amigos.includes(nombre)) {
-        alert("Este nombre ya ha sido agregado.");
+        alert("Este nombre ya está en la lista. No se pueden repetir amigos.");
         return;
     }
 
-    amigos.push(nombre);
-    amigosRestantes.push(nombre);
-    inputAmigo.value = ""; // Limpiar el campo de entrada
-    actualizarListaAmigos();
+    amigos.push(nombre); // Agrega el nombre a la lista
+    actualizarListaAmigos(); // Muestra la lista actualizada
+    inputAmigo.value = ""; // Limpia el campo de texto
 }
 
-// Función para actualizar la lista visual de amigos
+// Función para actualizar la lista en pantalla
 function actualizarListaAmigos() {
-    let lista = document.getElementById("listaAmigos");
-    lista.innerHTML = ""; // Limpiar lista antes de actualizar
+    const listaAmigos = document.getElementById("listaAmigos");
+    listaAmigos.innerHTML = ""; // Limpia la lista antes de actualizar
 
     amigos.forEach((amigo) => {
-        let li = document.createElement("li");
+        const li = document.createElement("li");
         li.textContent = amigo;
-        lista.appendChild(li);
+        listaAmigos.appendChild(li);
     });
-
-    // Mostrar la lista solo si hay amigos agregados
-    lista.style.display = amigos.length > 0 ? "block" : "none";
 }
 
-// Función para sortear un amigo al azar
+// Función para sortear un amigo secreto
 function sortearAmigo() {
     if (amigos.length === 0) {
         alert("No hay amigos en la lista para sortear.");
         return;
     }
 
-    if (amigosRestantes.length === 0) {
-        alert("Todos los amigos han sido sorteados. Reiniciando el sorteo.");
-        reiniciarSorteo();
+    if (amigosSorteados.length === amigos.length) {
+        alert("Ya se han sorteado todos los amigos. Reinicia el juego para un nuevo sorteo.");
         return;
     }
 
-    // Seleccionar un amigo al azar
-    let indiceAleatorio = Math.floor(Math.random() * amigosRestantes.length);
-    let amigoSorteado = amigosRestantes.splice(indiceAleatorio, 1)[0]; // Eliminar el sorteado de la lista
+    // Ocultar la lista de amigos para que no se vean los nombres pendientes
+    document.getElementById("listaAmigos").style.display = "none";
+
+    let amigoSorteado;
+    do {
+        let indice = Math.floor(Math.random() * amigos.length);
+        amigoSorteado = amigos[indice];
+    } while (amigosSorteados.includes(amigoSorteado));
+
+    amigosSorteados.push(amigoSorteado); // Agregar el amigo sorteado a la lista de sorteados
 
     mostrarResultado(amigoSorteado);
-
-    // Ocultar la lista de amigos después de sortear el primero
-    document.getElementById("listaAmigos").style.display = "none";
 }
 
 // Función para mostrar el resultado del sorteo
 function mostrarResultado(amigo) {
-    let resultado = document.getElementById("resultado");
-    resultado.innerHTML = `<p>🎉 ${amigo} es el amigo secreto! 🎁</p>`;
+    const resultado = document.getElementById("resultado");
+    const li = document.createElement("li");
+    li.textContent = `🎉 ${amigo} es el amigo secreto 🎉`;
+    resultado.appendChild(li);
 }
 
 // Función para reiniciar el sorteo
 function reiniciarSorteo() {
-    if (amigos.length === 0) {
-        alert("No hay amigos en la lista. Agrega nombres antes de sortear.");
-        return;
-    }
-
-    amigosRestantes = [...amigos]; // Restaurar la lista original
+    amigos = [];
+    amigosSorteados = [];
+    document.getElementById("listaAmigos").innerHTML = "";
     document.getElementById("resultado").innerHTML = "";
-    document.getElementById("listaAmigos").style.display = "block"; // Volver a mostrar la lista de amigos
-    actualizarListaAmigos();
+    document.getElementById("listaAmigos").style.display = "block"; // Mostrar la lista nuevamente
 }
 
-// Event Listener para permitir agregar amigos con la tecla "Enter"
+// Agregar event listeners para teclas de acceso rápido
 document.getElementById("amigo").addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         agregarAmigo();
