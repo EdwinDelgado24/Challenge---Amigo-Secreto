@@ -32,6 +32,9 @@ function actualizarListaAmigos() {
         li.textContent = amigo;
         lista.appendChild(li);
     });
+
+    // Mostrar la lista si hay amigos
+    lista.style.display = amigos.length > 0 ? "block" : "none";
 }
 
 // Función para sortear un amigo al azar
@@ -54,15 +57,15 @@ function sortearAmigo() {
 
     amigosSorteados.push(amigoSorteado);
     mostrarResultado(amigoSorteado);
+
+    // Ocultar la lista de amigos después de sortear
+    document.getElementById("listaAmigos").style.display = "none";
 }
 
 // Función para mostrar el resultado del sorteo
 function mostrarResultado(amigo) {
     let resultado = document.getElementById("resultado");
     resultado.innerHTML = `<p>🎉 ${amigo} es el amigo secreto! 🎁</p>`;
-
-    // Ocultar la lista de amigos sorteados
-    document.getElementById("listaAmigos").style.display = "none";
 }
 
 // Función para reiniciar el sorteo
