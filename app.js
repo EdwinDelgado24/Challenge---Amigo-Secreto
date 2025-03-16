@@ -1,4 +1,4 @@
-// Lista para almacenar los nombres de los amigos
+// Lista de amigos y lista de amigos restantes por sortear
 let amigos = [];
 let amigosRestantes = [];
 
@@ -40,6 +40,11 @@ function actualizarListaAmigos() {
 
 // Función para sortear un amigo al azar
 function sortearAmigo() {
+    if (amigos.length === 0) {
+        alert("No hay amigos en la lista para sortear.");
+        return;
+    }
+
     if (amigosRestantes.length === 0) {
         alert("Todos los amigos han sido sorteados. Reiniciando el sorteo.");
         reiniciarSorteo();
@@ -48,7 +53,7 @@ function sortearAmigo() {
 
     // Seleccionar un amigo al azar
     let indiceAleatorio = Math.floor(Math.random() * amigosRestantes.length);
-    let amigoSorteado = amigosRestantes.splice(indiceAleatorio, 1)[0]; // Remover el sorteado de la lista
+    let amigoSorteado = amigosRestantes.splice(indiceAleatorio, 1)[0]; // Eliminar el sorteado de la lista
 
     mostrarResultado(amigoSorteado);
 
@@ -64,13 +69,18 @@ function mostrarResultado(amigo) {
 
 // Función para reiniciar el sorteo
 function reiniciarSorteo() {
+    if (amigos.length === 0) {
+        alert("No hay amigos en la lista. Agrega nombres antes de sortear.");
+        return;
+    }
+
     amigosRestantes = [...amigos]; // Restaurar la lista original
     document.getElementById("resultado").innerHTML = "";
     document.getElementById("listaAmigos").style.display = "block"; // Volver a mostrar la lista de amigos
     actualizarListaAmigos();
 }
 
-// Event Listeners para permitir agregar amigos con la tecla "Enter"
+// Event Listener para permitir agregar amigos con la tecla "Enter"
 document.getElementById("amigo").addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         agregarAmigo();
