@@ -40,7 +40,6 @@ function sortearAmigo() {
     
     // Ocultar la lista de amigos para que no se vean los pendientes ni los sorteados
     document.getElementById("listaAmigos").style.display = "none";
-    document.getElementById("resultado").innerHTML = "";
     
     const indiceAleatorio = Math.floor(Math.random() * amigosDisponibles.length);
     const amigoSorteado = amigosDisponibles.splice(indiceAleatorio, 1)[0];
@@ -57,7 +56,9 @@ function sortearAmigo() {
 }
 
 function reiniciarSorteo() {
-    amigosDisponibles = [...amigos];
+    amigos = [];
+    amigosDisponibles = [];
     document.getElementById("listaAmigos").style.display = "block";
+    document.getElementById("listaAmigos").innerHTML = "";
     document.getElementById("resultado").innerHTML = "";
 }
