@@ -61,31 +61,3 @@ function sortearAmigo() {
     }
 }
 
-// Función para mostrar el botón de reiniciar el sorteo
-function mostrarBotonReiniciar() {
-    const buttonContainer = document.querySelector('.button-container');
-    const botonReiniciar = document.createElement('button');
-    botonReiniciar.textContent = '🔄 Nuevo sorteo';
-    botonReiniciar.classList.add('button-draw');
-    botonReiniciar.onclick = reiniciarSorteo;
-
-    buttonContainer.innerHTML = ''; // Limpiar los botones existentes
-    buttonContainer.appendChild(botonReiniciar);
-}
-
-// Función para reiniciar el sorteo
-function reiniciarSorteo() {
-    amigos = []; // Vaciar la lista de amigos
-    document.getElementById('listaAmigos').innerHTML = ''; // Limpiar la lista en la UI
-    document.getElementById('resultado').innerHTML = ''; // Limpiar los resultados
-    document.getElementById('listaAmigos').style.display = 'block'; // Mostrar la lista nuevamente
-
-    // Restaurar el botón original
-    const buttonContainer = document.querySelector('.button-container');
-    buttonContainer.innerHTML = `
-        <button class="button-draw" onclick="sortearAmigo()" aria-label="Sortear amigo secreto">
-            <img src="play_circle_outline.png" alt="Ícono para sortear">
-            Sortear amigo
-        </button>
-    `;
-}
