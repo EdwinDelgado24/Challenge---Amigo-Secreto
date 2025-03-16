@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Agregar el nombre a la lista
         listaAmigos.push(nombre);
 
+        // Mostrar la lista si estaba oculta
+        listaElementos.style.display = "block";
+
         // Actualizar la lista en la interfaz
         actualizarLista();
 
@@ -52,6 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
             li.appendChild(botonEliminar);
             listaElementos.appendChild(li);
         });
+
+        // Mostrar la lista solo si hay elementos
+        listaElementos.style.display = listaAmigos.length > 0 ? "block" : "none";
     }
 
     // Función para eliminar un amigo de la lista
@@ -67,22 +73,25 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Eliminar al amigo sorteado de la lista
-listaAmigos.splice(indiceAleatorio, 1);
-
-// Actualizar la lista en pantalla
-actualizarLista();
-
-// Verificar si ya no quedan amigos para sortear
-if (listaAmigos.length === 0) {
-    alert("¡Se han sorteado todos los amigos! No quedan más por elegir.");
-}
+        // Ocultar la lista de amigos al iniciar el sorteo
+        listaElementos.style.display = "none";
 
         const indiceAleatorio = Math.floor(Math.random() * listaAmigos.length);
         const amigoSecreto = listaAmigos[indiceAleatorio];
 
         // Mostrar el resultado en la interfaz
         resultadoElemento.innerHTML = `<li>🎉 El amigo secreto es: <strong>${amigoSecreto}</strong> 🎉</li>`;
+
+        // Eliminar al amigo sorteado de la lista
+        listaAmigos.splice(indiceAleatorio, 1);
+
+        // Actualizar la lista en pantalla
+        actualizarLista();
+
+        // Verificar si ya no quedan amigos para sortear
+        if (listaAmigos.length === 0) {
+            alert("¡Se han sorteado todos los amigos! No quedan más por elegir.");
+        }
     }
 
     // Asignar eventos a los botones
