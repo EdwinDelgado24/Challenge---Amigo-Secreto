@@ -61,3 +61,15 @@ function sortearAmigo() {
     }
 }
 
+// Función para mostrar el botón de reiniciar el sorteo
+function mostrarBotonReiniciar() {
+    const buttonContainer = document.querySelector('.button-container');
+    const botonReiniciar = document.createElement('button');
+    botonReiniciar.textContent = '🔄 Nuevo sorteo';
+    botonReiniciar.classList.add('button-draw');
+    botonReiniciar.onclick = reiniciarSorteo;
+
+    buttonContainer.innerHTML = ''; // Limpiar los botones existentes
+    buttonContainer.appendChild(botonReiniciar);
+}
+
