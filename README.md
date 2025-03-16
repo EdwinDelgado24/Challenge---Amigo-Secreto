@@ -11,7 +11,7 @@ Una vez se haya completado la asignación se debe reiniciar la página para volv
 Para elaborar este proyecto se utilizaron las siguientes instrucciones:
 - Crear una lista
 - Función de añadir amigos
-- Validar que el nombre sea válido y ni esté repetido
+- Validar que el nombre sea válido y no esté repetido
 - Añadir el nombre a la lista
 - Función para ocultar la lista cuando se inicia el sorteo
 - Selección aleatoria del amigo
