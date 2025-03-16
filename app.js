@@ -67,6 +67,17 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // Eliminar al amigo sorteado de la lista
+listaAmigos.splice(indiceAleatorio, 1);
+
+// Actualizar la lista en pantalla
+actualizarLista();
+
+// Verificar si ya no quedan amigos para sortear
+if (listaAmigos.length === 0) {
+    alert("¡Se han sorteado todos los amigos! No quedan más por elegir.");
+}
+
         const indiceAleatorio = Math.floor(Math.random() * listaAmigos.length);
         const amigoSecreto = listaAmigos[indiceAleatorio];
 
