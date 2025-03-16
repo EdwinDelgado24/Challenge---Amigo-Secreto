@@ -1,5 +1,6 @@
 // Lista para almacenar los nombres de los amigos
 let amigos = [];
+let amigosRestantes = [];
 
 // Función para agregar un amigo a la lista
 function agregarAmigo() {
@@ -17,6 +18,7 @@ function agregarAmigo() {
     }
 
     amigos.push(nombre);
+    amigosRestantes.push(nombre);
     inputAmigo.value = ""; // Limpiar el campo de entrada
     actualizarListaAmigos();
 }
@@ -32,32 +34,25 @@ function actualizarListaAmigos() {
         lista.appendChild(li);
     });
 
-    // Mostrar la lista si hay amigos
+    // Mostrar la lista solo si hay amigos agregados
     lista.style.display = amigos.length > 0 ? "block" : "none";
 }
 
 // Función para sortear un amigo al azar
 function sortearAmigo() {
-    if (amigos.length === 0) {
-        alert("No hay amigos en la lista para sortear.");
-        return;
-    }
-
-    if (amigosSorteados.length === amigos.length) {
-        alert("Todos los amigos ya han sido sorteados. Reiniciando el sorteo.");
+    if (amigosRestantes.length === 0) {
+        alert("Todos los amigos han sido sorteados. Reiniciando el sorteo.");
         reiniciarSorteo();
         return;
     }
 
-    let amigoSorteado;
-    do {
-        amigoSorteado = amigos[Math.floor(Math.random() * amigos.length)];
-    } while (amigosSorteados.includes(amigoSorteado));
+    // Seleccionar un amigo al azar
+    let indiceAleatorio = Math.floor(Math.random() * amigosRestantes.length);
+    let amigoSorteado = amigosRestantes.splice(indiceAleatorio, 1)[0]; // Remover el sorteado de la lista
 
-    amigosSorteados.push(amigoSorteado);
     mostrarResultado(amigoSorteado);
 
-    // Ocultar la lista de amigos después de sortear
+    // Ocultar la lista de amigos después de sortear el primero
     document.getElementById("listaAmigos").style.display = "none";
 }
 
@@ -69,9 +64,9 @@ function mostrarResultado(amigo) {
 
 // Función para reiniciar el sorteo
 function reiniciarSorteo() {
-    amigosSorteados = [];
+    amigosRestantes = [...amigos]; // Restaurar la lista original
     document.getElementById("resultado").innerHTML = "";
-    document.getElementById("listaAmigos").style.display = "block"; // Volver a mostrar la lista
+    document.getElementById("listaAmigos").style.display = "block"; // Volver a mostrar la lista de amigos
     actualizarListaAmigos();
 }
 
