@@ -91,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Verificar si ya no quedan amigos para sortear
         if (listaAmigos.length === 0) {
             alert("¡Se han sorteado todos los amigos! No quedan más por elegir.");
+            resultadoElemento.innerHTML += `<li>✅ Todos los amigos han sido sorteados. ✅</li>`;
         }
     }
 
